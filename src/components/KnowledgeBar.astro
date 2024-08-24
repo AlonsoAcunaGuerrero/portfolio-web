@@ -1,0 +1,108 @@
+---
+
+interface Props{
+    level: number
+}
+
+const { level } = Astro.props;
+---
+
+
+<div class='knowledge-container'>
+    <span>Knowledge</span>
+    <div class='bar'>
+        <div class={`fill per-${level}`}></div>
+    </div>
+</div>
+
+<style>
+    .knowledge-container {
+		display: flex;
+		flex-direction: row;
+        gap: 0.5em;
+        width: 100%;
+        align-items: center;
+	}
+
+    .knowledge-container > span {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        font-size: 1.1em;
+        font-style: italic;
+        font-weight: 500;
+        color: white;
+    }
+
+    .bar {
+        height: 100%;
+        width: 100%;
+        border: white solid 2px;
+        border-radius: 0.2em;
+        background: linear-gradient(to right, rgba(118, 243, 250, 1), 
+            rgba(74, 139, 251, 1), rgba(92, 92, 252, 1));
+    }
+
+    .fill{
+        display: flex;
+        position: relative;
+        border-radius: 0.25em;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .fill::before {
+        content: '|';
+        position: absolute;
+        color: transparent;
+        background-color: white;
+        right: 0;
+        top: 0px;
+        bottom: 0px;
+        border: gray solid 4px;
+    }
+
+    .per-0{
+        width: 0%;
+    }
+
+    .per-1 {
+        width: 10%;
+    }
+
+    .per-2 {
+        width: 20%;
+    }
+
+    .per-3 {
+        width: 30%;
+    }
+
+    .per-4 {
+        width: 40%;
+    }
+
+    .per-5 {
+        width: 50%;
+    }
+
+    .per-6 {
+        width: 60%;
+    }
+
+    .per-7 {
+        width: 70%;
+    }
+
+    .per-8 {
+        width: 80%;
+    }
+
+    .per-9 {
+        width: 90%;
+    }
+
+    .per-10 {
+        width: 100%;
+    }
+</style>

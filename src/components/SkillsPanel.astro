@@ -1,0 +1,235 @@
+---
+import Card, { type FrameLib } from "./Card.astro";
+
+import RustLogo from "../assets/img/rust_logo.png";
+import { SiActix } from "react-icons/si";
+
+import JSLogo from '../assets/img/javascript_logo.png';
+import TSLogo from '../assets/img/typescript_logo.png';
+import { SiReact, SiAstro } from "react-icons/si";
+
+import JavaLogo from '../assets/img/java_logo.png';
+import { BiLogoSpringBoot } from "react-icons/bi";
+import { SiSpringsecurity } from "react-icons/si";
+
+import GodotLogo from '../assets/img/godot_logo.png';
+
+import CSharpLogo from '../assets/img/c_sharp_logo.png';
+import { SiCsharp } from "react-icons/si";
+
+import SQLLogo from '../assets/img/sql_logo.png';
+import { BiLogoPostgresql } from "react-icons/bi";
+import { GrMysql } from "react-icons/gr";
+
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    title: string
+}
+
+interface Skill {
+    name: string,
+    img: ImageMetadata,
+    knowledgeLv: number,
+	framesLibs: FrameLib[]
+}
+
+const { title } = Astro.props;
+
+const listOfSkills: Skill[] = [
+    {
+        name: "Javascript",
+        img: JSLogo,
+        knowledgeLv: 8,
+        framesLibs: [
+            {
+                name: 'React',
+                icon: SiReact
+            },
+            {
+                name: 'Astro',
+                icon: SiAstro
+            }
+        ]
+    },
+    {
+        name: "Typescript",
+        img: TSLogo,
+        knowledgeLv: 9,
+        framesLibs: [
+            {
+                name: 'React',
+                icon: SiReact
+            },
+            {
+                name: 'Astro',
+                icon: SiAstro
+            }
+        ]
+    },
+    {
+        name: "Rust",
+        img: RustLogo,
+        knowledgeLv: 8,
+        framesLibs: [
+            {
+                name: 'Actix-Web',
+                icon: SiActix
+            }
+        ]
+    },
+    {
+        name: "C#",
+        img: CSharpLogo,
+        knowledgeLv: 9,
+        framesLibs: [
+            {
+                name: 'ASP .Net Core',
+                icon: SiCsharp
+            }
+        ]
+    },
+    {
+        name: "Java",
+        img: JavaLogo,
+        knowledgeLv: 9,
+        framesLibs: [
+            {
+                name: 'Spring Boot',
+                icon: BiLogoSpringBoot
+            },
+            {
+                name: 'Spring Security',
+                icon: SiSpringsecurity
+            }
+        ]
+    },
+    {
+        name: "Godot Engine",
+        img: GodotLogo,
+        knowledgeLv: 8,
+        framesLibs: []
+    },
+    {
+        name: "SQL",
+        img: SQLLogo,
+        knowledgeLv: 9,
+        framesLibs: [
+            {
+                name: "MySQL",
+                icon: GrMysql
+            },
+            {
+                name: "PostgreSQL",
+                icon: BiLogoPostgresql
+            }
+        ]
+    }
+]
+
+---
+
+<div class='skills-main-container'>
+    <div class="title-container">
+        <h2>{title}</h2>
+    </div>
+    
+    <ul class='cards-container'>
+        {
+            listOfSkills?.map((skill) =>
+                <li class='card-item'>
+                    <Card name={skill.name} img={skill.img} 
+                        knowledgeLv={skill.knowledgeLv} framesLibs={skill.framesLibs} />
+                </li>
+                
+            )
+        }
+    </ul>
+</div>
+
+<style>
+    .skills-main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .title-container {
+        display: flex;
+        width: 75%;
+        height: 15vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title-container > h2 {
+        font-size: 2.5em;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+
+    .cards-container {
+        display: grid;
+        gap: 1.25em;
+        padding: 1em;
+        width: 100%;
+    }
+
+    .card-item {
+        list-style: none;
+        min-height: 87.5vh;
+    }
+
+    .card-item:first-child {
+        min-height: 72.5vh;
+    }
+
+    @media (min-width: 640px) {
+        .cards-container {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 768px) {
+        .card-item {
+            list-style: none;
+            min-height: 45vh;
+        }
+
+        .card-item:nth-child(-n + 2) {
+            min-height: 76vh;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .cards-container {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            width: 90%;
+        }
+
+        .card-item {
+            min-height: 87.5vh;
+        }
+
+        .card-item:nth-child(-n + 3) {
+            min-height: 72.5vh;
+        }
+    }
+    
+    @media (min-width: 1280px) {
+        .cards-container {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            width: 100%;
+        }
+
+        .card-item {
+            min-height: 87.5vh;
+        }
+
+        .card-item:nth-child(-n + 4) {
+            min-height: 72.5vh;
+        }
+    }
+
+</style>
