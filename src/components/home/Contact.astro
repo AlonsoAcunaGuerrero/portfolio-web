@@ -1,0 +1,123 @@
+---
+import { BiLogoLinkedin, BiLogoGmail } from "react-icons/bi";
+import { PiGithubLogoFill } from "react-icons/pi";
+---
+
+<div class='contact-resume-box'>
+    <ul class='contact-resume-container'>
+        <li class='contact-item linkedin'>
+            <a target='_blank' href='https://www.linkedin.com/in/alonso-acu%C3%B1a-guerrero-b5a014271/'>
+                <BiLogoLinkedin />
+            </a>
+        </li>
+        <li class='contact-item github'>
+            <a target='_blank' href='https://github.com/AlonsoAcunaGuerrero'>
+                <PiGithubLogoFill />
+            </a>
+        </li>
+        <li class='contact-item gmail'>
+            <a target='_blank' href='mailto:alonso.ag555@gmail.com'>
+                <BiLogoGmail />
+            </a>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .contact-resume-box {
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		padding: 0.25em;
+		gap: 0.5em;
+		border-radius: 1em;
+		align-items: center;
+		outline-offset: 4px;
+		outline-color: white;
+		outline-style: solid;
+		max-width: auto;
+		transition: max-width 400ms ease-out 700ms;
+	}
+
+	.contact-resume-container {
+		display: flex;
+		flex-direction: row;
+		gap: 0.75em;
+		border-radius: 1em;
+		opacity: 1;
+		transition: opacity 200ms ease-in 900ms;
+	}
+
+    .contact-item {
+		display: flex;
+		background-color: black;
+		padding: 0.35em;
+		border-radius: 25%;
+		opacity: 1;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 2s ease-in-out 0.1s, transform 90ms ease-in-out 35ms;
+	}
+
+	.contact-item:hover {
+		transform: scale(1.15);
+	}
+
+	.contact-item > a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.contact-item > a > svg {
+		font-size: 2em;
+		color: white;
+	}
+
+	.contact-item:nth-child(1) {
+		animation-delay: 0s;
+	}
+
+	.contact-item:nth-child(2) {
+		animation-delay: 1s;
+	}
+	
+	.contact-item:nth-child(3) {
+		animation-delay: 2s;
+	}
+
+	@starting-style {
+		.contact-item {
+			opacity: 0;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.contact-resume-box {
+			padding: 0.5em;
+		}
+		
+		.contact-item > a > svg {
+			font-size: 3em;
+			color: white;
+		}
+	}
+
+    @media (min-width: 1024px) {
+		.contact-resume-box {
+			/* font-size: 1em; */
+			position: absolute;
+			right: 1.5em;
+			bottom: 1.5em;
+		}
+
+		.contact-resume-container {
+			flex-direction: column;
+		}
+
+        .contact-item > a > svg {
+			font-size: 2em;
+			color: white;
+		}
+	}
+</style>

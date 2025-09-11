@@ -1,0 +1,141 @@
+---
+import { Image } from 'astro:assets';
+import Photo from '../../assets/img/20250703_190339.jpg';
+---
+
+<div class='about'>
+    <Image class={"photo"} src={Photo} alt="" />
+    
+    <div class="about-info">
+        <h2>
+            {"About Me"}
+        </h2>
+        
+        <p>
+			Hello, I am a Systems Engineering student at the University of Guayaquil, 
+			interested in programming and managing of networks and servers.
+        </p>
+    </div>
+</div>
+
+<style>
+    .about {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		background-color: white;
+		color: black;
+		padding: 0.5em;
+		border-radius: 1em;
+		outline-offset: 4px;
+		outline-color: white;
+		outline-style: solid;
+		gap: 0.25em;
+		max-height: 55vh;
+		transition: max-height 600ms ease-out 50ms;
+	}
+
+	.photo {
+		display: flex;
+		height: clamp(175px, 22.5vh, 400px);
+		width: auto;
+		aspect-ratio: 1 / 1;
+		border: black solid 4px;
+		border-radius: 12px;
+		transition: opacity 200ms ease-in 500ms;
+	}
+	
+	.about-info > h2 {
+		font-size: clamp(1.25em, 3vh, 1.75em);
+		width: 100%;
+		text-align: center;
+		opacity: 1;
+		transition: opacity 200ms ease-out 700ms;
+	}
+
+	.about-info > p {
+		font-size: clamp(1em, 2.5vh, 1.5em);
+		text-align: justify;
+		opacity: 1;
+		transition: opacity 200ms ease-in 900ms;
+	}
+
+	@starting-style {
+		.about {
+			max-height: 0;
+		}
+
+		.photo {
+			opacity: 0;
+		}
+
+		.about-info > h2 {
+			opacity: 0;
+		}
+
+		.about-info > p {
+			opacity: 0;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.about {
+			padding: 1em;
+		}
+		
+		.about-info > h2 {
+			font-size: 2.5em;
+		}
+
+		.about-info > p {
+			font-size: 2.25em;
+		}
+	}
+
+    @media (min-width: 1024px) {
+		.about {
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 80%;
+			gap: 0.75em;
+		}
+
+		.about {
+			padding: 0.5em;
+		}
+
+		.about-info > h2 {
+			font-size: 2.25em;
+		}
+
+		.about-info > p {
+			font-size: 2em;
+		}
+    }
+
+	@media (min-width: 1280px) {
+		.about {
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40%;
+			gap: 0.75em;
+		}
+
+		.about-info > h2 {
+			font-size: 1.75em;
+		}
+
+		.about-info > p {
+			font-size: 1.25em;
+		}
+	}
+</style>

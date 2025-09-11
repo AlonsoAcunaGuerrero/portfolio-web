@@ -1,27 +1,30 @@
 ---
-import Card, { type FrameLib } from "./Card.astro";
+import SectionPanel from "../../layouts/SectionPanel.astro";
+import SkillCard from "./SkillCard.astro";
 
-import RustLogo from "../assets/img/rust_logo.png";
+import RustLogo from "../../assets/img/rust_logo.png";
 import { SiActix } from "react-icons/si";
 
-import JSLogo from '../assets/img/javascript_logo.png';
-import TSLogo from '../assets/img/typescript_logo.png';
+import JSLogo from '../../assets/img/javascript_logo.png';
+import TSLogo from '../../assets/img/typescript_logo.png';
 import { SiReact, SiAstro } from "react-icons/si";
 
-import JavaLogo from '../assets/img/java_logo.png';
+import JavaLogo from '../../assets/img/java_logo.png';
 import { BiLogoSpringBoot } from "react-icons/bi";
 import { SiSpringsecurity } from "react-icons/si";
 
-import GodotLogo from '../assets/img/godot_logo.png';
+import CSharpLogo from '../../assets/img/c_sharp_logo.png';
+import { TbBrandCSharp  } from "react-icons/tb";
 
-import CSharpLogo from '../assets/img/c_sharp_logo.png';
-import { SiCsharp } from "react-icons/si";
+import SQLLogo from '../../assets/img/sql_logo.png';
 
-import SQLLogo from '../assets/img/sql_logo.png';
+import GodotLogo from '../../assets/img/godot_logo.png';
+
 import { BiLogoPostgresql } from "react-icons/bi";
 import { GrMysql } from "react-icons/gr";
 
 import type { ImageMetadata } from "astro";
+import type { FrameLib } from "./FrameLibCard.astro";
 
 interface Props {
     title: string
@@ -85,7 +88,7 @@ const listOfSkills: Skill[] = [
         framesLibs: [
             {
                 name: 'ASP .Net Core',
-                icon: SiCsharp
+                icon: TbBrandCSharp 
             }
         ]
     },
@@ -105,15 +108,9 @@ const listOfSkills: Skill[] = [
         ]
     },
     {
-        name: "Godot Engine",
-        img: GodotLogo,
-        knowledgeLv: 8,
-        framesLibs: []
-    },
-    {
         name: "SQL",
         img: SQLLogo,
-        knowledgeLv: 9,
+        knowledgeLv: 8,
         framesLibs: [
             {
                 name: "MySQL",
@@ -124,66 +121,47 @@ const listOfSkills: Skill[] = [
                 icon: BiLogoPostgresql
             }
         ]
+    },
+    {
+        name: "Godot Engine",
+        img: GodotLogo,
+        knowledgeLv: 8,
+        framesLibs: []
     }
 ]
 
 ---
-
-<div class='skills-main-container'>
-    <div class="title-container">
-        <h2>{title}</h2>
-    </div>
-    
+<SectionPanel title={title}>
     <ul class='cards-container'>
         {
             listOfSkills?.map((skill) =>
                 <li class='card-item'>
-                    <Card name={skill.name} img={skill.img} 
-                        knowledgeLv={skill.knowledgeLv} framesLibs={skill.framesLibs} />
+                    <SkillCard name={skill.name} img={skill.img} 
+                        framesLibs={skill.framesLibs} />
                 </li>
                 
             )
         }
     </ul>
-</div>
+</SectionPanel>
 
 <style>
-    .skills-main-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .title-container {
-        display: flex;
-        width: 75%;
-        height: 15vh;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .title-container > h2 {
-        font-size: 2.5em;
-        text-decoration: underline;
-        text-underline-offset: 8px;
-    }
-
     .cards-container {
         display: grid;
-        gap: 1.25em;
-        padding: 1em;
+        gap: calc(var(--cards-separation));
         width: 100%;
+        padding-top: var(--top-separation);
     }
 
-    .card-item {
+    /* .card-item {
         list-style: none;
-        min-height: 87.5vh;
+        width: 100%;
+        height: calc(54.25vh - (var(--top-separation) * 4));
     }
 
     .card-item:first-child {
-        min-height: 72.5vh;
-    }
+        height: calc(100vh - var(--title-container-h) - (var(--top-separation) * 5.25));
+    }*/
 
     @media (min-width: 640px) {
         .cards-container {
@@ -191,45 +169,32 @@ const listOfSkills: Skill[] = [
         }
     }
 
+    /*
     @media (min-width: 768px) {
         .card-item {
             list-style: none;
-            min-height: 45vh;
+            height: calc(54.25vh - (var(--top-separation) * 4));
         }
 
         .card-item:nth-child(-n + 2) {
-            min-height: 76vh;
+            height: calc(100vh - var(--title-container-h) - (var(--top-separation) * 5.25));
         }
-    }
+    } */
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1280px) {
         .cards-container {
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            width: 90%;
+            width: 100%;
         }
-
+    } 
+    /*
         .card-item {
-            min-height: 87.5vh;
+            height: calc(100vh - (var(--top-separation) * 4));
         }
 
         .card-item:nth-child(-n + 3) {
-            min-height: 72.5vh;
+            height: calc(100vh - var(--title-container-h) - (var(--top-separation) * 5.25));
         }
-    }
-    
-    @media (min-width: 1280px) {
-        .cards-container {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            width: 100%;
-        }
-
-        .card-item {
-            min-height: 87.5vh;
-        }
-
-        .card-item:nth-child(-n + 4) {
-            min-height: 72.5vh;
-        }
-    }
+    } */
 
 </style>

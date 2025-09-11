@@ -1,0 +1,256 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from './ProjectsPanel.astro';
+import { FaGithub } from "react-icons/fa";
+import { TiArrowSortedUp } from "react-icons/ti";
+
+const { name, description, img, listOfFramesLibs, frontend_url, backend_url } = Astro.props as Project;
+---
+
+<div class='project-card'>
+    <div class='image-container'>
+        <Image class={"image"} src={img} alt="" height={135} />
+    </div>
+
+    <div class='project-info'>
+        <h2 class='project-name'>{name}</h2>
+
+        <p class='project-description''>{description}</p>
+    </div>
+
+    <div class='resources-titles-container'>
+        <span class='frontend-title'>Frontend</span>
+        <span class='backend-title''>Backend</span>
+    </div>
+
+    <div class='resources-links-container'>
+        <a href={frontend_url} target='_blank' class='btn-frontend'>
+            <FaGithub />
+            <TiArrowSortedUp />
+        </a>
+
+        <a href={backend_url} target='_blank' class='btn-backend'>
+            <FaGithub />
+            <TiArrowSortedUp />
+        </a>
+    </div>
+</div>
+
+<style>
+    .project-card {
+        display: flex;
+		flex-direction: column;
+		list-style: none;
+		height: 100%;
+		width: 100%;
+		color: black;
+		padding: 0.5em;
+		background-color: rgb(255, 255, 255);
+		border-style: solid;
+		border-width: 2px;
+		border-color: rgb(216, 216, 216);
+		border-radius: 1em;
+		gap: 0.75em;
+		transition-property: all;
+		transition-timing-function: ease-in;
+		transition-duration: 200ms;
+		transition-delay: 50ms;
+	}
+
+    .project-card:hover {
+		outline-offset: 8px;
+		outline-color: white;
+		outline-style: solid;
+        outline-width: 0.25em;
+	}
+
+    .image-container {
+        display: flex;
+		background-color: white;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+        border-radius: 1.5em;
+        padding: 0.25em;
+        min-width: 150px;
+    }
+
+    .image {
+        display: flex;
+        aspect-ratio: 1 / 1;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        width: 100%;
+    }
+
+    .project-name, .project-description {
+        color: black;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .project-name {
+        font-size: 1.75em;
+        font-weight: bold;
+    }
+
+    .project-description {
+        font-size: 1.5em;
+    }
+
+    .resources-titles-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resources-titles-container > span {
+        width: 100%;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .resources-links-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .btn-frontend, .btn-backend {
+        display: flex;
+        background-color: transparent;
+        align-items: center;
+		justify-content: center;
+        border-style: solid;
+        padding: 0.25em;
+        transition-property: all;
+		transition-timing-function: ease-out;
+		transition-duration: 500ms;
+		transition-delay: 50ms;
+        position: relative;
+        width: 100%;
+        height: 4.5em;
+    }
+
+    .btn-frontend {
+        border-color: rgb(84, 0, 99);
+        border-width: 0.25em 0 0.25em 0.25em;
+        border-radius: 1em 0 0 1em;
+    }
+
+    .btn-backend {
+        border-color: rgb(193, 112, 0);
+        border-width: 0.25em 0.25em 0.25em 0;
+        border-radius: 0 1em 1em 0 ;
+    }
+
+    .btn-frontend > svg, 
+    .btn-backend > svg {
+        position: absolute;
+        transition-property: transform;
+		transition-timing-function: ease-out;
+    }
+
+    .btn-frontend > svg:first-child,
+    .btn-backend > svg:first-child {
+        color: black;
+        font-size: 3em;
+        transition-duration: 250ms;
+        transition-delay: 50ms;
+    }
+
+    .btn-frontend > svg:nth-child(2),
+    .btn-backend > svg:nth-child(2) {
+        color: transparent;
+        font-size: 3em;
+        visibility: hidden;
+        transition-property: visibility;
+        transition-duration: 0ms, 500ms;
+        transition-delay: 350ms;
+    }
+
+    .btn-frontend > svg:nth-child(2) {
+        transform: translateX(-0.75em) rotate(-90deg);
+    }
+
+    .btn-backend > svg:nth-child(2) {
+        transform: translateX(0.75em) rotate(90deg);
+    }
+
+    .btn-frontend:hover {
+        background-color: rgb(84, 0, 99);
+    }
+    .btn-backend:hover {
+        background-color: rgb(193, 112, 0);
+    }
+
+    .btn-frontend:hover > svg,
+    .btn-backend:hover > svg {
+        color: white;
+    }
+
+    .btn-frontend:hover > svg:first-child {
+        transform: translateX(0.25em);
+    }
+
+    .btn-backend:hover > svg:first-child {
+        transform: translateX(-0.25em);
+    }
+
+    .btn-frontend:hover > svg:nth-child(2),
+    .btn-backend:hover > svg:nth-child(2) {
+        visibility: visible;
+    }
+
+    @media (min-width: 768px) {
+
+    }
+
+    @media (min-width: 1024px) {
+        .btn-frontend,
+        .btn-backend {
+            height: 4.5em;
+        }
+
+        .btn-frontend > svg:first-child,
+        .btn-backend > svg:first-child {
+            font-size: 3em;
+        }
+
+        .btn-frontend > svg:nth-child(2),
+        .btn-backend > svg:nth-child(2) {
+            font-size: 3em;
+        }
+    }
+
+
+    /* @media (min-width: 1024px) {
+        .project-card {
+            flex-direction: row;
+        }
+
+        .project-name, .project-description {
+            text-align: start;
+        }
+
+        .btn-resource {
+            border-radius: 0.25em 1em 1em 0.25em;
+            width: 10em;
+            height: 100%;
+        }
+
+        .btn-resource > svg:nth-child(2) {
+            transform: translateY(1em) rotate(0deg);
+        }
+
+        .btn-resource:hover > svg:first-child {
+            transform: translateY(-0.4em);
+        }
+    } */
+</style>

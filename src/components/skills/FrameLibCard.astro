@@ -1,0 +1,41 @@
+---
+import type { IconType } from "react-icons";
+
+export interface FrameLib {
+	name: string,
+	icon: IconType
+}
+
+const { name, icon } = Astro.props as FrameLib;
+---
+
+<div class='fl-item'>
+    <Astro.props.icon />
+    <span>{"<" + name + "/>"}</span>
+</div>
+
+<style>
+    .fl-item {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-size: 1em;
+        list-style: none;
+		align-items: center;
+        justify-content: center;
+		text-align: center;
+		padding: 0.25em;
+		border-radius: 0.25em;
+		background-color: white;
+		color: black;
+	}
+
+	.fl-item > svg {
+		font-size: 2.5em;
+	}
+
+	.fl-item > span {
+		font-style: italic;
+		font-size: 0.8em;
+	}
+</style>

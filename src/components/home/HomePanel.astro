@@ -1,0 +1,55 @@
+---
+import About from "./About.astro";
+import Contact from "./Contact.astro";
+---
+
+<div class='home-main-container'>
+    <h1>Hi, I'm Alonso Acuña<br/>Full-Stack Web Developer And Game Developer</h1>
+
+    <About />
+
+    <Contact />
+</div>
+
+<style>
+    .home-main-container {
+		display: flex;
+		flex-direction: column;
+		background-color: #1a1a1a;
+		position: relative;
+		justify-content: space-between;
+		padding: 1em;
+        height: calc(100vh - 60px);
+	}
+
+	.home-main-container > h1 {
+		font-size: clamp(2em, 4.75vh, 2.75em);
+		text-align: center;
+		width: 100%;
+		opacity: 1;
+		transition: opacity 2000ms ease-in 50ms;
+	}
+
+	@starting-style {
+		.home-main-container > h1 {
+			opacity: 0;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.home-main-container > h1 {
+			font-size: clamp(3em, 5.75vh, 4.5em);
+		}
+	}
+
+
+    @media (min-width: 1024px) {
+		.home-main-container > h1 {
+			font-size: 3.6em;
+			position: absolute;
+			text-align: center;
+			left: 0px;
+			right: 0px;
+		}
+	}
+</style>

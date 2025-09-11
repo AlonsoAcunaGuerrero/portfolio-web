@@ -1,0 +1,80 @@
+---
+import SectionPanel from "../../layouts/SectionPanel.astro";
+import ProjectCard from './ProjectCard.astro';
+import HSLogo from "../../assets/img/Hardware_Shop_Project_Logo.png";
+import CTALogo from "../../assets/img/Colaborative_Task_App.png";
+import type { FrameLib } from "../skills/FrameLibCard.astro";
+
+interface Props {
+    title: string
+}
+
+export interface Project {
+    name: string,
+    description: string,
+	img: ImageMetadata,
+    listOfFramesLibs: FrameLib[],
+    frontend_url: string,
+    backend_url: string
+}
+
+const { title } = Astro.props;
+
+const listOfProjects: Project[] = [
+    {
+        name: "Hardware Store",
+        description: "It's my first project about an e-commerce to sell PC hardware.",
+        img: HSLogo,
+        listOfFramesLibs: [],
+        frontend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-app",
+        backend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-api"
+    },
+    {
+        name: "Colaborative Task App",
+        description: "It is an application for teamwork and task management.",
+        img: CTALogo,
+        listOfFramesLibs: [],
+        frontend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-frontend",
+        backend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-backend"
+    }
+]
+---
+<SectionPanel title={title}>
+    <ul class='cards-container'>
+        {
+            listOfProjects?.map((project) => 
+                <li class='card-item'>
+                    <ProjectCard name={project.name} description={project.description} img={project.img} 
+                    listOfFramesLibs={project.listOfFramesLibs} frontend_url={project.frontend_url} 
+                    backend_url={project.backend_url} />
+                </li> 
+            )
+        }
+    </ul>
+</SectionPanel>
+
+<style>
+    .cards-container {
+        display: grid;
+        gap: var(--cards-separation);
+        width: 100%;
+        padding-top: var(--top-separation);
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    
+    .card-item {
+        padding: 1em;
+    }
+
+    @media (min-width: 768px) {
+        .cards-container {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .cards-container {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+</style>
