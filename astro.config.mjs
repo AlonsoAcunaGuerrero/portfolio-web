@@ -5,6 +5,11 @@ import react from '@astrojs/react';
 export default defineConfig({
     site: 'https://AlonsoAcunaGuerrero.github.io',
     base: "/portfolio-web",
+    image: {
+        service: {
+            entrypoint: 'astro/assets/services/sharp'
+        }
+    },
     integrations: [react()],
     vite: {
         ssr: {
