@@ -1,8 +1,11 @@
----
-const locale = Astro.preferredLocale;
+<script>
+  const lang = navigator.language;
 
-// Si no detecta nada, usa español por defecto
-const userLocale = locale ?? 'en';
+  console.log(lang)
 
-return Astro.redirect(`/portfolio-web/${userLocale}/`);
----
+  if (lang.startsWith("es")) {
+    window.location.href = "/portfolio-web/es/";
+  } else {
+    window.location.href = "/portfolio-web/en/";
+  }
+</script>

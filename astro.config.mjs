@@ -5,7 +5,6 @@ import react from '@astrojs/react';
 export default defineConfig({
     site: 'https://AlonsoAcunaGuerrero.github.io',
     base: "/portfolio-web",
-    output: "server",
     image: {
         service: {
             entrypoint: 'astro/assets/services/sharp'
