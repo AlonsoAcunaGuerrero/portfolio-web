@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 export default defineConfig({
     site: 'https://AlonsoAcunaGuerrero.github.io',
     base: "/portfolio-web",
+    output: "server",
     image: {
         service: {
             entrypoint: 'astro/assets/services/sharp'
@@ -15,5 +16,9 @@ export default defineConfig({
         ssr: {
             noExternal: ["react-icons"],
         }
+    },
+    i18n: {
+        locales: ["es", "en"],
+        defaultLocale: "en",
     }
 });

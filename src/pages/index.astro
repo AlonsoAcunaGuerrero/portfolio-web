@@ -1,28 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import HomePanel from '../components/home/HomePanel.astro';
-import SkillsPanel from '../components/skills/SkillsPanel.astro';
-import ProjectsPanel from '../components/projects/ProjectsPanel.astro';
+const locale = Astro.preferredLocale;
+
+// Si no detecta nada, usa español por defecto
+const userLocale = locale ?? 'en';
+
+return Astro.redirect(`/portfolio-web/${userLocale}/`);
 ---
-
-<Layout title='Portfolio - Alonso Acuña'>
-	<Navbar />
-	<main>
-		<section id='home'>
-			<HomePanel 
-			title='About Me'
-			presentationTitles={["Hi, I'm Alonso Acuña", "Full-Stack Web Developer And Game Developer"]}
-			infoAboutMe = 'Hello, I am a Systems Engineering student at the University of Guayaquil, 
-			interested in programming and managing of networks and servers.' />
-		</section>
-	</main>
-
-	<section id='skills'>
-		<SkillsPanel title='Skills' />
-	</section>
-
-	<section id='projects' >
-		<ProjectsPanel title='Projects' />
-	</section>
-</Layout>
