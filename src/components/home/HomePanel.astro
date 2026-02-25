@@ -1,12 +1,24 @@
 ---
 import About from "./About.astro";
 import Contact from "./Contact.astro";
+
+interface Props {
+	title: string;
+	presentationTitles: string[];
+	infoAboutMe: string;
+}
+
+const { title, presentationTitles, infoAboutMe } = Astro.props as Props;
 ---
 
 <div class='home-main-container'>
-    <h1>Hi, I'm Alonso Acuña<br/>Full-Stack Web Developer And Game Developer</h1>
+    <h1>{
+		presentationTitles.map((title) => 
+		<span>{title}</span>
+	)
+	}</h1>
 
-    <About />
+    <About title={title} infoAboutMe={infoAboutMe} />
 
     <Contact />
 </div>
@@ -23,11 +35,16 @@ import Contact from "./Contact.astro";
 	}
 
 	.home-main-container > h1 {
-		font-size: clamp(2em, 4.75vh, 2.75em);
-		text-align: center;
+		display: flex;
+		flex-direction: column;
 		width: 100%;
 		opacity: 1;
 		transition: opacity 2000ms ease-in 50ms;
+	}
+
+	.home-main-container > h1 > span {
+		font-size: clamp(2em, 4.75vh, 2.75em);
+		text-align: center;
 	}
 
 	@starting-style {
@@ -37,7 +54,7 @@ import Contact from "./Contact.astro";
 	}
 
 	@media (min-width: 768px) {
-		.home-main-container > h1 {
+		.home-main-container > h1 > span {
 			font-size: clamp(3em, 5.75vh, 4.5em);
 		}
 	}
@@ -45,11 +62,14 @@ import Contact from "./Contact.astro";
 
     @media (min-width: 1024px) {
 		.home-main-container > h1 {
-			font-size: 3.6em;
 			position: absolute;
-			text-align: center;
 			left: 0px;
 			right: 0px;
+		}
+
+		.home-main-container > h1 > span {
+			font-size: 4.25em;
+			text-align: center;
 		}
 	}
 </style>

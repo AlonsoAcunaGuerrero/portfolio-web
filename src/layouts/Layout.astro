@@ -30,5 +30,29 @@ const { title } = Astro.props;
 		box-sizing: border-box;
 		text-decoration-line: none;
 		list-style-type: none;
+		/* Global Variables */
+		--title-container-h: 10vh;
+		--top-separation: 1.5em;
+		--cards-separation: 1.25em; 
+	}
+
+	@font-face {
+		font-family: 'SairaCondensed';
+		src: url('../assets/fonts/saira_condensed/SairaCondensed-Medium.ttf') format('truetype');
+	}
+	
+	h1, h2, h3, p, a, span {
+		font-family: 'SairaCondensed', sans-serif;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
+
+	section {
+		padding-top: 60px;
+		min-height: 100vh;
+		background-color: rgb(20, 20, 20);
+		color: white;
 	}
 </style>

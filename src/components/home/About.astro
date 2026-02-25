@@ -1,6 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import Photo from '../../assets/img/20250703_190339.jpg';
+
+interface Props {
+	title: string;
+	infoAboutMe: string;
+}
+
+const { title, infoAboutMe } = Astro.props;
 ---
 
 <div class='about'>
@@ -8,12 +15,11 @@ import Photo from '../../assets/img/20250703_190339.jpg';
     
     <div class="about-info">
         <h2>
-            {"About Me"}
+            {title}
         </h2>
         
         <p>
-			Hello, I am a Systems Engineering student at the University of Guayaquil, 
-			interested in programming and managing of networks and servers.
+			{infoAboutMe}
         </p>
     </div>
 </div>
