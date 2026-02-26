@@ -1,13 +1,69 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.astro';
+import Navbar, { NavItem } from '../../components/Navbar.astro';
 import HomePanel from '../../components/home/HomePanel.astro';
 import SkillsPanel from '../../components/skills/SkillsPanel.astro';
-import ProjectsPanel from '../../components/projects/ProjectsPanel.astro';
+import ProjectsPanel, { Project } from '../../components/projects/ProjectsPanel.astro';
+import HSLogo from "../../assets/img/Hardware_Shop_Project_Logo.png";
+import CTALogo from "../../assets/img/Colaborative_Task_App.png";
+import { TbBrandCSharp  } from "react-icons/tb";
+import { SiReact, SiActix } from "react-icons/si";
+
+const listOfProjects: Project[] = [
+    {
+        name: "Tienda de Hardware",
+        description: "Mi primer proyecto acerca de un e-commerce para la venta de hardware de PC.",
+        img: HSLogo,
+        listOfFramesLibs: [
+			{
+                name: 'ReactJS',
+                icon: SiReact
+            },
+			{
+                name: 'ASP .Net Core',
+                icon: TbBrandCSharp 
+            }
+		],
+        frontend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-app",
+        backend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-api"
+    },
+    {
+        name: "Aplicación para Trabajo Colaborativo",
+        description: "Aplicación para trabajo en equipo y administración de tareas.",
+        img: CTALogo,
+        listOfFramesLibs: [
+			{
+                name: 'ReactTS',
+                icon: SiReact
+            },
+			{
+                name: 'Actix-Web',
+                icon: SiActix
+            }
+		],
+        frontend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-frontend",
+        backend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-backend"
+    }
+]
 ---
 
 <Layout title='Portfolio - Alonso Acuña'>
-    <Navbar />
+    <Navbar listOfNavItems={
+		[
+			{
+				name: "Inicio",
+				path: "#top"
+			},
+			{
+				name: "Conocimientos",
+				path: "#skills"
+			},
+			{
+				name: "Proyectos",
+				path: "#projects"
+			}
+		]
+	} />
 	<main>
 		<section id='home'>
 			<HomePanel title='Acerca de Mi'
@@ -20,10 +76,12 @@ import ProjectsPanel from '../../components/projects/ProjectsPanel.astro';
 	</main>
 
     <section id='skills'>
-		<SkillsPanel title='Habilidades' />
+		<SkillsPanel title='Conocimientos'
+		cardFLTitle='Frameworks y Librerias' />
 	</section>
 
 	<section id='projects'>
-		<ProjectsPanel title='Proyectos' />
+		<ProjectsPanel title='Proyectos' listOfProjects={listOfProjects}
+		cardFLTitle='Frameworks y Librerias' />
 	</section>
 </Layout>

@@ -1,22 +1,29 @@
 ---
+interface Props {
+	listOfNavItems: NavItem[]
+}
 
+export interface NavItem {
+    name: string,
+    path: string
+}
+
+const { listOfNavItems } = Astro.props as Props;
 ---
 
 <nav>
     <div>
         <div>
         </div>
-    
+
         <ul>
-            <li>
-                <a href="#top" class="nav-item">Home</a>
-            </li>
-            <li>
-                <a href="#skills" class="nav-item">Skills</a>
-            </li>
-            <li>
-                <a href="#projects" class="nav-item">Projects</a>
-            </li>
+            {
+                listOfNavItems.map((navItem) => 
+                    <li>
+                        <a href={navItem.path} class="nav-item">{navItem.name}</a>
+                    </li>
+                )
+            }
         </ul>
     </div>
 </nav>

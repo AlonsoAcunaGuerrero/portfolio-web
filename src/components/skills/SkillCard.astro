@@ -7,10 +7,11 @@ import FrameLibCard from './FrameLibCard.astro';
 interface Props {
 	name: string,
 	img: ImageMetadata,
-	framesLibs: FrameLib[]
+	framesLibs: FrameLib[],
+	cardFLTitle: string
 }
 
-const { name, img, framesLibs } = Astro.props;
+const { name, img, framesLibs, cardFLTitle } = Astro.props as Props;
 ---
 
 
@@ -23,7 +24,7 @@ const { name, img, framesLibs } = Astro.props;
 	{
 		framesLibs?.length != 0 ?
 		<div class='frames-libs-box'>
-			<h3>Frameworks & Libraries</h3>
+			<h3>{cardFLTitle}</h3>
 			<div class='fl-container'>
 				{
 					framesLibs?.map((value) => 

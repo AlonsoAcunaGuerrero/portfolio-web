@@ -4,7 +4,11 @@ import type { Project } from './ProjectsPanel.astro';
 import { FaGithub } from "react-icons/fa";
 import { TiArrowSortedUp } from "react-icons/ti";
 
-const { name, description, img, listOfFramesLibs, frontend_url, backend_url } = Astro.props as Project;
+interface Props extends Project{
+    cardFLTitle: string
+}
+
+const { name, description, img, listOfFramesLibs, frontend_url, backend_url, cardFLTitle } = Astro.props as Props;
 ---
 
 <div class='project-card'>
@@ -16,6 +20,20 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url } = 
         <h2 class='project-name'>{name}</h2>
 
         <p class='project-description''>{description}</p>
+    </div>
+
+    <div class="fl-box">
+        <h3>{cardFLTitle}</h3>
+        <ul class="fl-container">
+            {
+                listOfFramesLibs.map((fl) => 
+                <li class="fl-item">
+                    <fl.icon />
+                    <span>{fl.name}</span>
+                </li>
+            )
+            }
+        </ul>
     </div>
 
     <div class='resources-titles-container'>
@@ -229,28 +247,49 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url } = 
         }
     }
 
+    {/* Frames & Libs */}
 
-    /* @media (min-width: 1024px) {
-        .project-card {
-            flex-direction: row;
-        }
+    .fl-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5em;
+    }
 
-        .project-name, .project-description {
-            text-align: start;
-        }
+    .fl-box > h3 {
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+    }
 
-        .btn-resource {
-            border-radius: 0.25em 1em 1em 0.25em;
-            width: 10em;
-            height: 100%;
-        }
+    .fl-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 0.5em;
+    }
 
-        .btn-resource > svg:nth-child(2) {
-            transform: translateY(1em) rotate(0deg);
-        }
+    .fl-item {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-size: 1em;
+        list-style: none;
+		align-items: center;
+        justify-content: center;
+		text-align: center;
+		padding: 0.25em;
+		border-radius: 0.25em;
+		background-color: black;
+		color: white;
+	}
 
-        .btn-resource:hover > svg:first-child {
-            transform: translateY(-0.4em);
-        }
-    } */
+    .fl-item > svg {
+		font-size: 2.5em;
+	}
+
+	.fl-item > span {
+		font-style: italic;
+		font-size: 1.2em;
+	}
 </style>
