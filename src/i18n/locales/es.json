@@ -1,0 +1,9 @@
+{
+    "aboutme.title" : "Acerca de Mi",
+    "aboutme.description" : "Hola, soy un Ingeniero en Sistemas, enfocado a la programación Full Stack Web, Desarrollo de Videojuegos y Mobile.",
+    "projects.btn_show_info" : "Mostrar Información",
+    "projects.lbl_working_on_projects" : "Trabajando en Proyectos",
+    "skills.lbl_language" : "Lenguaje",
+    "skills.lbl_database" : "Base de Datos",
+    "skills.lbl_data_analysis" : "Análisis Datos"
+}

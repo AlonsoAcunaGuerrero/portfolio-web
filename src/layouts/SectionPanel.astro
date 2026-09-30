@@ -11,6 +11,8 @@ const { title } = Astro.props;
         <h2>{title}</h2>
     </div>
 
+    <hr />
+
     <slot />
 </div>
 
@@ -23,13 +25,18 @@ const { title } = Astro.props;
         height: var(--title-container-h);
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: transparent;
         border-radius: 0.5em;
+    }
+
+    hr {
+        color: var(--primary-color);
+        width: 100%;
     }
 
     .section-title-container > h2 {
 		font-size: calc(var(--title-container-h) / 2);
-        color: black;
+        color: var(--primary-color);
         text-align: center;
         width: 100%;
     }

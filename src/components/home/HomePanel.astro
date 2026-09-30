@@ -1,14 +1,11 @@
 ---
 import About from "./About.astro";
-import Contact from "./Contact.astro";
 
 interface Props {
-	title: string;
 	presentationTitles: string[];
-	infoAboutMe: string;
 }
 
-const { title, presentationTitles, infoAboutMe } = Astro.props as Props;
+const { presentationTitles } = Astro.props as Props;
 ---
 
 <div class='home-main-container'>
@@ -18,16 +15,14 @@ const { title, presentationTitles, infoAboutMe } = Astro.props as Props;
 	)
 	}</h1>
 
-    <About title={title} infoAboutMe={infoAboutMe} />
-
-    <Contact />
+    <About />
 </div>
 
 <style>
     .home-main-container {
 		display: flex;
 		flex-direction: column;
-		background-color: #1a1a1a;
+		background-color: var(--secondary-color);
 		position: relative;
 		justify-content: space-between;
 		padding: 1em;

@@ -1,0 +1,149 @@
+---
+import type { IconType } from "react-icons";
+import type { Tech } from "../../types";
+import TechCard from "./TechCard.astro";
+
+interface Props {
+    title: string;
+    icon: IconType;
+    techList: Tech[];
+}
+
+const getNumColumns = (techs: Tech[]): number => {
+    const result: number = Math.round(techList.length / 4);
+
+    if (result <= 0) return 1;
+
+    if (result > 4) return 4;
+
+    return result;
+};
+
+const { title, icon, techList } = Astro.props;
+---
+
+<div class={`tech-list-${getNumColumns(techList).toString()}`}>
+    <div class="tech-list-header">
+        <Astro.props.icon />
+        <h2>{title}</h2>
+    </div>
+
+    <hr />
+
+    <div class="technologies-container">
+        {
+            techList.map((tech) => (
+                <div class={`technology-items-${getNumColumns(techList).toString()}`}>
+                    <TechCard
+                        name={tech.name}
+                        icon={tech.icon}
+                        tags={tech.tags}
+                    />
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .tech-list-1, .tech-list-2, .tech-list-3, .tech-list-4 {
+        width: 100%;
+        grid-column: span 12;
+    }
+
+    .tech-list-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5em 1em;
+        gap: 1em;
+    }
+
+    .tech-list-header > svg {
+        font-size: 2.5em;
+    }
+
+    .tech-list-header > h2 {
+        font-size: 2.5em;
+        width: 100%;
+        text-align: start;
+        text-transform: uppercase;
+    }
+
+    .technologies-container {
+        display: grid;
+        margin-top: 2em;
+        gap: 1.25em;
+        width: 100%;
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    /* Max 1 Column */
+    .technology-items-1, .technology-items-2, 
+    .technology-items-3, .technology-items-4 {
+        grid-column: span 12;
+    }
+
+    /* Max 2 Columns */
+    @media (min-width: 640px) {
+        .tech-list-1 {
+            width: 100%;
+            grid-column: span 6;
+        }
+
+        .tech-list-2, .tech-list-3, .tech-list-4{
+            grid-column: span 12;
+        }
+
+
+        .technology-items-1 {
+            grid-column: span 12;
+        }
+
+        .technology-items-2,
+        .technology-items-3,
+        .technology-items-4 {
+            grid-column: span 6;
+        }
+    }
+
+    /* Max 4 Columns */
+    @media (min-width: 1280px) {
+        .tech-list-1 {
+            width: 100%;
+            grid-column: span 3;
+        }
+
+        .tech-list-2 {
+            width: 100%;
+            grid-column: span 6;
+        }
+
+        .tech-list-3 {
+            width: 100%;
+            grid-column: span 9;
+        }
+
+        .tech-list-4 {
+            width: 100%;
+            grid-column: span 12;
+        } 
+
+
+        .technology-items-1 {
+            grid-column: span 12;
+        }
+
+        .technology-items-2 {
+            grid-column: span 6;
+        }
+
+        .technology-items-3 {
+            grid-column: span 4;
+        }
+
+        .technology-items-4 {
+            grid-column: span 3;
+        }
+    }
+</style>

@@ -1,0 +1,9 @@
+{
+    "aboutme.title" : "About Me",
+    "aboutme.description" : "Hello, I am a Systems Engineer focused on Full Stack Web, Game, and Mobile Development.",
+    "projects.btn_show_info" : "Show Information",
+    "projects.lbl_working_on_projects" : "Working On Projects",
+    "skills.lbl_language" : "Language",
+    "skills.lbl_database" : "Database",
+    "skills.lbl_data_analysis" : "Data Analysis"
+}

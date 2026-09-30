@@ -1,32 +1,25 @@
 ---
 import SectionPanel from "../../layouts/SectionPanel.astro";
-import SkillCard from "./SkillCard.astro";
+import TechList from "./TechList.astro";
+import type { Tech } from "../../types";
 
-import RustLogo from "../../assets/img/rust_logo.png";
-import { SiActix } from "react-icons/si";
-
-import JSLogo from '../../assets/img/javascript_logo.png';
-import TSLogo from '../../assets/img/typescript_logo.png';
-import { SiReact, SiAstro } from "react-icons/si";
-
-import JavaLogo from '../../assets/img/java_logo.png';
-import { BiLogoSpringBoot } from "react-icons/bi";
-import { SiSpringsecurity } from "react-icons/si";
-
-import CSharpLogo from '../../assets/img/c_sharp_logo.png';
-import { TbBrandCSharp  } from "react-icons/tb";
-
-import SQLLogo from '../../assets/img/sql_logo.png';
-
-import GodotLogo from '../../assets/img/godot_logo.png';
-
-import { BiLogoPostgresql } from "react-icons/bi";
+import { SiActix, SiReact, SiAstro, SiGodotengine, SiPytorch } from "react-icons/si";
+import { BiLogoSpringBoot, BiLogoPostgresql } from "react-icons/bi";
+import { SiSpringsecurity, SiPython } from "react-icons/si";
+import { DiJava } from "react-icons/di";
+import { IoAnalytics } from "react-icons/io5";
+import { TbBrandCSharp } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
-
-import type { ImageMetadata } from "astro";
-import type { FrameLib } from "./FrameLibCard.astro";
+import { SiJavascript, SiTypescript, SiRust, SiPodman } from "react-icons/si";
+import { FaCode, FaServer, FaConnectdevelop } from "react-icons/fa";
+import { FaDatabase } from "react-icons/fa6";
+import { MdOutlineScreenshotMonitor } from "react-icons/md";
+import { TbSql } from "react-icons/tb";
+import { IoGameController } from "react-icons/io5";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 interface Props {
+<<<<<<< HEAD
     title: string,
     cardFLTitle: string
 }
@@ -36,12 +29,21 @@ interface Skill {
     img: ImageMetadata,
     knowledgeLv: number,
 	framesLibs: FrameLib[],
+=======
+    title: string;
+>>>>>>> 40d8838 (General Update)
 }
 
 const { title, cardFLTitle } = Astro.props;
 
-const listOfSkills: Skill[] = [
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const lblLanguage: string = t("skills.lbl_language");
+
+const LANGUAGE_LIST: Tech[] = [
     {
+<<<<<<< HEAD
         name: "Javascript",
         img: JSLogo,
         knowledgeLv: 8,
@@ -81,58 +83,124 @@ const listOfSkills: Skill[] = [
                 icon: SiActix
             }
         ]
+=======
+        name: "JavaScript",
+        icon: SiJavascript,
+        tags: ["Frontend"],
+    },
+    {
+        name: "TypeScript",
+        icon: SiTypescript,
+        tags: ["Frontend"],
+>>>>>>> 40d8838 (General Update)
     },
     {
         name: "C#",
-        img: CSharpLogo,
-        knowledgeLv: 9,
-        framesLibs: [
-            {
-                name: 'ASP .Net Core',
-                icon: TbBrandCSharp 
-            }
-        ]
+        icon: TbBrandCSharp,
+        tags: ["Backend"],
     },
     {
         name: "Java",
-        img: JavaLogo,
-        knowledgeLv: 9,
-        framesLibs: [
-            {
-                name: 'Spring Boot',
-                icon: BiLogoSpringBoot
-            },
-            {
-                name: 'Spring Security',
-                icon: SiSpringsecurity
-            }
-        ]
+        icon: DiJava,
+        tags: ["Backend"],
+    },
+    {
+        name: "Python",
+        icon: SiPython,
+        tags: ["Data Analysis"]
+    },
+    {
+        name: "Rust",
+        icon: SiRust,
+        tags: ["Backend"],
     },
     {
         name: "SQL",
-        img: SQLLogo,
-        knowledgeLv: 8,
-        framesLibs: [
-            {
-                name: "MySQL",
-                icon: GrMysql
-            },
-            {
-                name: "PostgreSQL",
-                icon: BiLogoPostgresql
-            }
-        ]
+        icon: TbSql,
+        tags: ["Database"],
+    },
+];
+
+const FRONTEND_LIST: Tech[] = [
+    {
+        name: "React",
+        icon: SiReact,
+        tags: ["JavaScript", "TypeScript"],
     },
     {
-        name: "Godot Engine",
-        img: GodotLogo,
-        knowledgeLv: 8,
-        framesLibs: []
+        name: "Astro",
+        icon: SiAstro,
+        tags: ["JavaScript", "TypeScript"],
+    },
+];
+
+const BACKEND_LIST: Tech[] = [
+    {
+        name: "Spring Boot",
+        icon: BiLogoSpringBoot,
+        tags: ["Java"],
+    },
+    {
+        name: "Spring Security",
+        icon: SiSpringsecurity,
+        tags: ["Java", "Spring Boot"],
+    },
+    {
+        name: "ASP .NET Core",
+        icon: TbBrandCSharp,
+        tags: ["C#"],
+    },
+    {
+        name: "Actix-Web",
+        icon: SiActix,
+        tags: ["Rust"],
+    },
+];
+
+const DEVOPS_LIST: Tech[] = [
+    {
+        name: "Podman",
+        icon: SiPodman,
+        tags: ["Containers"]
+    },
+];
+
+const lblDatabase: string = t("skills.lbl_database");
+
+const DATABASE_LIST: Tech[] = [
+    {
+        name: "PostgreSQL",
+        icon: BiLogoPostgresql,
+        tags: ["SQL"],
+    },
+    {
+        name: "MySQL",
+        icon: GrMysql,
+        tags: ["SQL"],
+    },
+];
+
+const lblDataAnalysis: string = t("skills.lbl_data_analysis");
+
+const DATA_ANALYSIS_LIST: Tech[] = [
+    {
+        name: "PyTorch",
+        icon: SiPytorch,
+        tags: ["Python"]
     }
 ]
 
+const GAMEDEV_LIST: Tech[] = [
+    {
+        name: "Godot",
+        icon: SiGodotengine,
+        tags: ["GDScript"],
+    },
+];
 ---
+
 <SectionPanel title={title}>
+<<<<<<< HEAD
     <ul class='cards-container'>
         {
             listOfSkills?.map((skill) =>
@@ -145,23 +213,61 @@ const listOfSkills: Skill[] = [
             )
         }
     </ul>
+=======
+    <div class="technologies-container">
+        <TechList title={lblLanguage} icon={FaCode} techList={LANGUAGE_LIST} />
+        <TechList
+            title={"Frontend"}
+            icon={MdOutlineScreenshotMonitor}
+            techList={FRONTEND_LIST}
+        />
+        <TechList title={"Backend"} icon={FaServer} techList={BACKEND_LIST} />
+        <TechList
+            title={lblDatabase}
+            icon={FaDatabase}
+            techList={DATABASE_LIST}
+        />
+        <TechList
+            title={"DevOps"}
+            icon={FaConnectdevelop}
+            techList={DEVOPS_LIST}
+        />
+        <TechList
+            title={"Game Dev"}
+            icon={IoGameController}
+            techList={GAMEDEV_LIST}
+        />
+        <TechList 
+            title={lblDataAnalysis}
+            icon={IoAnalytics}
+            techList={DATA_ANALYSIS_LIST}
+        />
+    </div>
+>>>>>>> 40d8838 (General Update)
 </SectionPanel>
 
 <style>
-    .cards-container {
+    .technologies-container {
         display: grid;
-        gap: calc(var(--cards-separation));
         width: 100%;
-        padding-top: var(--top-separation);
+        gap: calc(var(--cards-separation));
+        grid-template-columns: repeat(12, 1fr);
     }
 
+<<<<<<< HEAD
     @media (min-width: 640px) {
         .cards-container {
             grid-template-columns: repeat(2, minmax(0, 1fr));
+=======
+    /* @media (min-width: 640px) {
+        .technologies-container {
+            grid-template-columns: repeat(2, 1fr);
+>>>>>>> 40d8838 (General Update)
         }
     }
 
     @media (min-width: 1280px) {
+<<<<<<< HEAD
         .cards-container {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             width: 100%;
@@ -169,3 +275,10 @@ const listOfSkills: Skill[] = [
     } 
 
 </style>
+=======
+        .technologies-container {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    } */
+</style>
+>>>>>>> 40d8838 (General Update)

@@ -1,0 +1,306 @@
+---
+import { IoMdCloseCircle } from "react-icons/io";
+import { FaGithub } from "react-icons/fa";
+import { TiArrowSortedUp } from "react-icons/ti";
+---
+
+<dialog id="project-modal">
+    <div class="modal-bg">
+        <div class="project-content">
+            <button id="modal-close">
+                <IoMdCloseCircle />
+            </button>
+
+            <div class="project-data">
+                <img id="project-img" />
+
+                <div class="project-data-basic">
+                    <h2 id="project-name"></h2>
+                    <p id="project-description"></p>
+                </div>
+            </div>
+
+            <div class="project-components">
+                <div class="frontend-box">
+                    <div class="component-info-container">
+                        <h3>
+                            Frontend
+                        </h3>
+
+                        <a href="#" id="btn-frontend" target="_blank">
+                            <FaGithub />
+                            <TiArrowSortedUp />
+                        </a>
+                    </div>
+
+                    <div class="component-img-container">
+                        
+                    </div>
+                </div>
+
+                <div class="backend-box">
+                    <div class="component-info-container">
+                        <h3>
+                            Backend
+                        </h3>
+
+                        <a href="#" id="btn-backend" target="_blank">
+                            <FaGithub />
+                            <TiArrowSortedUp />
+                        </a>
+                    </div>
+
+                    <div class="component-img-container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<script>
+    import type { ProjectData } from "../../types";
+
+    const dialog = document.getElementById(
+        "project-modal",
+    ) as HTMLDialogElement;
+
+    const nameLabel = document.getElementById("project-name")!;
+    const descriptionLabel = document.getElementById("project-description")!;
+    const imgImg = document.getElementById("project-img") as HTMLImageElement;
+
+    const frontendLink = document.getElementById("btn-frontend") as HTMLAnchorElement;
+    const backendLink = document.getElementById("btn-backend") as HTMLAnchorElement;
+
+    const closeBtn = document.getElementById("modal-close")!;
+
+    window.addEventListener("project:show", ((e: CustomEvent<ProjectData>) => {
+        const { name, description, imgPath, frontendUrl, backendUrl } = e.detail;
+
+        nameLabel.textContent = name;
+        descriptionLabel.textContent = description;
+
+        frontendLink.href = frontendUrl;
+        backendLink.href = backendUrl;
+
+        if (imgPath) {
+            imgImg.src = imgPath;
+        }
+
+        dialog.showModal();
+    }) as EventListener);
+
+    closeBtn.addEventListener("click", () => dialog.close());
+</script>
+
+<style>
+    #project-modal {
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    #modal-close {
+        position: absolute;
+        width: 3em;
+        background-color: transparent;
+        border-width: 0;
+        align-self: self-end;
+    }
+
+    #modal-close:hover {
+        cursor: pointer;
+    }
+
+    #modal-close > svg {
+        font-size: 3em;
+        color: black;
+    }
+
+    .modal-bg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+        color: black;
+        width: 90%;
+        max-width: 800px;
+        padding: 1.5em;
+        background-color: var(--primary-color);
+        border-style: none;
+        border-radius: 0.75em;
+    }
+
+    .project-data {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 1em;
+        justify-content: center;
+    }
+
+    .project-data-basic {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #project-name {
+        font-size: 2.25em;
+    }
+
+    #project-description {
+        font-size: 1.5em;
+    }
+
+    #project-img {
+        display: flex;
+        width: 125px;
+        aspect-ratio: 1;
+    }
+
+    {/* FRONTEND & BACKEND COMPONENTS BOXES */}
+    
+    .project-components {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75em
+    }
+
+    .project-components h3 {
+        font-size: 1.75em;
+    }
+
+    .frontend-box, .backend-box {
+        display: flex;
+        background-color: var(--primary-color);
+        border-radius: 1em;
+        border-style: solid;
+        border-width: 2px;
+        border-color: var(--neutral-color);
+    }
+
+    .component-info-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5em;
+    }
+
+    .component-img-container {
+        display: flex;
+        width: 100%;
+    }
+
+    {/* COMPONENTS REPO BUTTON */}
+
+    #btn-frontend,
+    #btn-backend {
+        display: flex;
+        background-color: transparent;
+        align-items: center;
+        justify-content: center;
+        border-style: solid;
+        padding: 0.125em;
+        transition-property: all;
+        transition-timing-function: ease-out;
+        transition-duration: 500ms;
+        transition-delay: 50ms;
+        position: relative;
+        width: 100%;
+        height: 4em;
+    }
+
+    #btn-frontend > svg,
+    #btn-backend > svg {
+        position: absolute;
+        transition-property: transform;
+        transition-timing-function: ease-out;
+    }
+
+    #btn-frontend > svg:first-child,
+    #btn-backend > svg:first-child {
+        color: black;
+        font-size: 2.5em;
+        transition-duration: 250ms;
+        transition-delay: 50ms;
+    }
+
+    #btn-frontend > svg:nth-child(2),
+    #btn-backend > svg:nth-child(2) {
+        color: transparent;
+        font-size: 2.5em;
+        visibility: hidden;
+        transition-property: visibility;
+        transition-duration: 0ms, 500ms;
+        transition-delay: 350ms;
+    }
+
+    #btn-frontend:hover > svg,
+    #btn-backend:hover > svg {
+        color: white;
+    }
+
+    #btn-frontend:hover > svg:nth-child(2),
+    #btn-backend:hover > svg:nth-child(2) {
+        visibility: visible;
+    }
+
+    {/* FRONTEND COMPONENT BOX */}
+
+    .frontend-box {
+        flex-direction: row;
+    }
+
+    #btn-frontend {
+        border-color: rgb(84, 0, 99);
+        border-width: 0.25em;
+        border-radius: 1em;
+    }
+
+    #btn-frontend > svg:nth-child(2) {
+        transform: translateX(-0.75em) rotate(-90deg);
+    }
+
+    #btn-frontend:hover {
+        background-color: rgb(84, 0, 99);
+    }
+
+    #btn-frontend:hover > svg:first-child {
+        transform: translateX(0.25em);
+    }
+
+    {/* BACKEND COMPONENT BOX */}
+
+    .backend-box {
+        flex-direction: row-reverse;
+    }
+
+    #btn-backend {
+        border-color: rgb(193, 112, 0);
+        border-width: 0.25em;
+        border-radius: 1em;
+    }
+
+    #btn-backend > svg:nth-child(2) {
+        transform: translateX(0.75em) rotate(90deg);
+    }
+    
+    #btn-backend:hover {
+        background-color: rgb(193, 112, 0);
+    }
+
+    #btn-backend:hover > svg:first-child {
+        transform: translateX(-0.25em);
+    }
+</style>

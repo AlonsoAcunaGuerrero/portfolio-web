@@ -1,27 +1,38 @@
 ---
-import { Image } from 'astro:assets';
-import type { Project } from './ProjectsPanel.astro';
+import { Image } from "astro:assets";
+import type { Project } from "./ProjectsPanel.astro";
 import { FaGithub } from "react-icons/fa";
 import { TiArrowSortedUp } from "react-icons/ti";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
+<<<<<<< HEAD
 interface Props extends Project{
     cardFLTitle: string
 }
 
 const { name, description, img, listOfFramesLibs, frontend_url, backend_url, cardFLTitle } = Astro.props as Props;
+=======
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const btnShowInfoText: string = t("projects.btn_show_info");
+
+const { name, description, img, frontendUrl, backendUrl } = Astro.props as Project;
+>>>>>>> 40d8838 (General Update)
 ---
 
-<div class='project-card'>
-    <div class='image-container'>
+<div class="project-card">
+    <div class="image-container">
         <Image class={"image"} src={img} alt="" height={135} />
     </div>
 
-    <div class='project-info'>
-        <h2 class='project-name'>{name}</h2>
+    <div class="project-info">
+        <h2 class="project-name">{name}</h2>
 
-        <p class='project-description''>{description}</p>
+        <p class="project-description" '>{description}</p>
     </div>
 
+<<<<<<< HEAD
     <div class="fl-box">
         <h3>{cardFLTitle}</h3>
         <ul class="fl-container">
@@ -52,42 +63,85 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
             <TiArrowSortedUp />
         </a>
     </div>
+=======
+    <button
+        class="btn-show-info"
+        data-name={name}
+        data-description={description}
+        data-img={img.src}
+        data-frontend-url={frontendUrl}
+        data-backend-url={backendUrl}
+    >
+        {btnShowInfoText}
+    </button>
+>>>>>>> 40d8838 (General Update)
 </div>
+
+<script>
+    import type { ProjectData } from "../../types";
+
+    export const showAlert = (config: ProjectData) => {
+        const event = new CustomEvent("project:show", { detail: config });
+        window.dispatchEvent(event);
+    };
+
+    const buttons = document.querySelectorAll(".btn-show-info");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            const target = e.currentTarget as HTMLButtonElement;
+            const name = target.dataset.name ?? "No Name";
+            const description = target.dataset.description ?? "";
+            const img = target.dataset.img;
+
+            const frontendUrl = target.dataset.frontendUrl ?? "#";
+            const backendUrl = target.dataset.backendUrl ?? "#"
+
+            showAlert({
+                name: name,
+                description: description,
+                imgPath: img,
+                frontendUrl: frontendUrl,
+                backendUrl: backendUrl
+            });
+        });
+    });
+</script>
 
 <style>
     .project-card {
         display: flex;
-		flex-direction: column;
-		list-style: none;
-		height: 100%;
-		width: 100%;
-		color: black;
-		padding: 0.5em;
-		background-color: rgb(255, 255, 255);
-		border-style: solid;
-		border-width: 2px;
-		border-color: rgb(216, 216, 216);
-		border-radius: 1em;
-		gap: 0.75em;
-		transition-property: all;
-		transition-timing-function: ease-in;
-		transition-duration: 200ms;
-		transition-delay: 50ms;
-	}
+        flex-direction: column;
+        list-style: none;
+        height: 100%;
+        width: 100%;
+        color: black;
+        padding: 0.5em;
+        background-color: rgb(255, 255, 255);
+        border-style: solid;
+        border-width: 2px;
+        border-color: rgb(216, 216, 216);
+        border-radius: 1em;
+        gap: 0.75em;
+        transition-property: all;
+        transition-timing-function: ease-in;
+        transition-duration: 200ms;
+        transition-delay: 50ms;
+    }
 
     .project-card:hover {
-		outline-offset: 8px;
-		outline-color: white;
-		outline-style: solid;
+        outline-offset: 8px;
+        outline-color: white;
+        outline-style: solid;
         outline-width: 0.25em;
-	}
+    }
 
     .image-container {
         display: flex;
-		background-color: white;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
         border-radius: 1.5em;
         padding: 0.25em;
         min-width: 150px;
@@ -105,12 +159,13 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
         width: 100%;
     }
 
-    .project-name, .project-description {
+    .project-name,
+    .project-description {
         color: black;
         text-align: center;
         width: 100%;
     }
-    
+
     .project-name {
         font-size: 1.75em;
         font-weight: bold;
@@ -120,117 +175,30 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
         font-size: 1.5em;
     }
 
-    .resources-titles-container {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .resources-titles-container > span {
-        width: 100%;
-        text-align: center;
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-
-    .resources-links-container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .btn-frontend, .btn-backend {
-        display: flex;
-        background-color: transparent;
-        align-items: center;
-		justify-content: center;
-        border-style: solid;
+    .btn-show-info {
+        background-color: var(--primary-color);
         padding: 0.25em;
+        font-size: 1.5em;
+        color: var(--secondary-color);
+        border-radius: 0.5em;
+        border-width: 0.2em;
+        border-style: solid;
+        border-color: var(--secondary-color);
         transition-property: all;
-		transition-timing-function: ease-out;
-		transition-duration: 500ms;
-		transition-delay: 50ms;
-        position: relative;
-        width: 100%;
-        height: 4.5em;
+        transition-duration: 175ms;
+        transition-delay: 25ms;
     }
 
-    .btn-frontend {
-        border-color: rgb(84, 0, 99);
-        border-width: 0.25em 0 0.25em 0.25em;
-        border-radius: 1em 0 0 1em;
-    }
-
-    .btn-backend {
-        border-color: rgb(193, 112, 0);
-        border-width: 0.25em 0.25em 0.25em 0;
-        border-radius: 0 1em 1em 0 ;
-    }
-
-    .btn-frontend > svg, 
-    .btn-backend > svg {
-        position: absolute;
-        transition-property: transform;
-		transition-timing-function: ease-out;
-    }
-
-    .btn-frontend > svg:first-child,
-    .btn-backend > svg:first-child {
-        color: black;
-        font-size: 3em;
-        transition-duration: 250ms;
-        transition-delay: 50ms;
-    }
-
-    .btn-frontend > svg:nth-child(2),
-    .btn-backend > svg:nth-child(2) {
-        color: transparent;
-        font-size: 3em;
-        visibility: hidden;
-        transition-property: visibility;
-        transition-duration: 0ms, 500ms;
-        transition-delay: 350ms;
-    }
-
-    .btn-frontend > svg:nth-child(2) {
-        transform: translateX(-0.75em) rotate(-90deg);
-    }
-
-    .btn-backend > svg:nth-child(2) {
-        transform: translateX(0.75em) rotate(90deg);
-    }
-
-    .btn-frontend:hover {
-        background-color: rgb(84, 0, 99);
-    }
-    .btn-backend:hover {
-        background-color: rgb(193, 112, 0);
-    }
-
-    .btn-frontend:hover > svg,
-    .btn-backend:hover > svg {
-        color: white;
-    }
-
-    .btn-frontend:hover > svg:first-child {
-        transform: translateX(0.25em);
-    }
-
-    .btn-backend:hover > svg:first-child {
-        transform: translateX(-0.25em);
-    }
-
-    .btn-frontend:hover > svg:nth-child(2),
-    .btn-backend:hover > svg:nth-child(2) {
-        visibility: visible;
+    .btn-show-info:hover {
+        background-color: var(--tertiary-color);
+        color: var(--primary-color);
+        cursor: pointer;
     }
 
     @media (min-width: 768px) {
-
     }
 
-    @media (min-width: 1024px) {
+    /* @media (min-width: 1024px) {
         .btn-frontend,
         .btn-backend {
             height: 4.5em;
@@ -245,9 +213,13 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
         .btn-backend > svg:nth-child(2) {
             font-size: 3em;
         }
+<<<<<<< HEAD
     }
 
     {/* Frames & Libs */}
+=======
+    } */
+>>>>>>> 40d8838 (General Update)
 
     .fl-box {
         display: flex;
@@ -284,6 +256,7 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
 		color: white;
 	}
 
+<<<<<<< HEAD
     .fl-item > svg {
 		font-size: 2.5em;
 	}
@@ -293,3 +266,10 @@ const { name, description, img, listOfFramesLibs, frontend_url, backend_url, car
 		font-size: 1.2em;
 	}
 </style>
+=======
+        .btn-resource:hover > svg:first-child {
+            transform: translateY(-0.4em);
+        }
+    } */
+</style>
+>>>>>>> 40d8838 (General Update)
