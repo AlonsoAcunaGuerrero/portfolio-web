@@ -1,4 +1,7 @@
 {
+    "navbar.home" : "Home",
+    "navbar.skills" : "Skills",
+    "navbar.projects" : "Projects",
     "aboutme.title" : "About Me",
     "aboutme.description" : "Hello, I am a Systems Engineer focused on Full Stack Web, Game, and Mobile Development.",
     "projects.btn_show_info" : "Show Information",

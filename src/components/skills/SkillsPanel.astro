@@ -19,22 +19,10 @@ import { IoGameController } from "react-icons/io5";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 interface Props {
-<<<<<<< HEAD
-    title: string,
-    cardFLTitle: string
-}
-
-interface Skill {
-    name: string,
-    img: ImageMetadata,
-    knowledgeLv: number,
-	framesLibs: FrameLib[],
-=======
     title: string;
->>>>>>> 40d8838 (General Update)
 }
 
-const { title, cardFLTitle } = Astro.props;
+const { title } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -43,47 +31,6 @@ const lblLanguage: string = t("skills.lbl_language");
 
 const LANGUAGE_LIST: Tech[] = [
     {
-<<<<<<< HEAD
-        name: "Javascript",
-        img: JSLogo,
-        knowledgeLv: 8,
-        framesLibs: [
-            {
-                name: 'ReactJS',
-                icon: SiReact
-            },
-            {
-                name: 'AstroJS',
-                icon: SiAstro
-            }
-        ]
-    },
-    {
-        name: "Typescript",
-        img: TSLogo,
-        knowledgeLv: 9,
-        framesLibs: [
-            {
-                name: 'ReactTS',
-                icon: SiReact
-            },
-            {
-                name: 'AstroTS',
-                icon: SiAstro
-            }
-        ]
-    },
-    {
-        name: "Rust",
-        img: RustLogo,
-        knowledgeLv: 8,
-        framesLibs: [
-            {
-                name: 'Actix-Web',
-                icon: SiActix
-            }
-        ]
-=======
         name: "JavaScript",
         icon: SiJavascript,
         tags: ["Frontend"],
@@ -92,7 +39,6 @@ const LANGUAGE_LIST: Tech[] = [
         name: "TypeScript",
         icon: SiTypescript,
         tags: ["Frontend"],
->>>>>>> 40d8838 (General Update)
     },
     {
         name: "C#",
@@ -200,20 +146,6 @@ const GAMEDEV_LIST: Tech[] = [
 ---
 
 <SectionPanel title={title}>
-<<<<<<< HEAD
-    <ul class='cards-container'>
-        {
-            listOfSkills?.map((skill) =>
-                <li class='card-item'>
-                    <SkillCard name={skill.name} img={skill.img} 
-                        framesLibs={skill.framesLibs}
-                        cardFLTitle={cardFLTitle} />
-                </li>
-                
-            )
-        }
-    </ul>
-=======
     <div class="technologies-container">
         <TechList title={lblLanguage} icon={FaCode} techList={LANGUAGE_LIST} />
         <TechList
@@ -243,7 +175,6 @@ const GAMEDEV_LIST: Tech[] = [
             techList={DATA_ANALYSIS_LIST}
         />
     </div>
->>>>>>> 40d8838 (General Update)
 </SectionPanel>
 
 <style>
@@ -254,31 +185,15 @@ const GAMEDEV_LIST: Tech[] = [
         grid-template-columns: repeat(12, 1fr);
     }
 
-<<<<<<< HEAD
-    @media (min-width: 640px) {
-        .cards-container {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-=======
     /* @media (min-width: 640px) {
         .technologies-container {
             grid-template-columns: repeat(2, 1fr);
->>>>>>> 40d8838 (General Update)
         }
     }
 
     @media (min-width: 1280px) {
-<<<<<<< HEAD
-        .cards-container {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            width: 100%;
-        }
-    } 
-
-</style>
-=======
         .technologies-container {
             grid-template-columns: repeat(4, 1fr);
         }
     } */
 </style>
->>>>>>> 40d8838 (General Update)

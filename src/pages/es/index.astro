@@ -1,89 +1,84 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar, { type NavItem } from '../../components/Navbar.astro';
-import HomePanel from '../../components/home/HomePanel.astro';
-import SkillsPanel from '../../components/skills/SkillsPanel.astro';
-import ProjectsPanel, { type Project } from '../../components/projects/ProjectsPanel.astro';
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import HomePanel from "../../components/home/HomePanel.astro";
+import SkillsPanel from "../../components/skills/SkillsPanel.astro";
+import ProjectsPanel, {
+    type Project,
+} from "../../components/projects/ProjectsPanel.astro";
 import HSLogo from "../../assets/img/Hardware_Shop_Project_Logo.png";
 import CTALogo from "../../assets/img/Colaborative_Task_App.png";
-import { TbBrandCSharp  } from "react-icons/tb";
+import { TbBrandCSharp } from "react-icons/tb";
 import { SiReact, SiActix } from "react-icons/si";
 
 const listOfProjects: Project[] = [
     {
         name: "Tienda de Hardware",
-        description: "Mi primer proyecto acerca de un e-commerce para la venta de hardware de PC.",
+        description:
+            "Mi primer proyecto acerca de un e-commerce para la venta de hardware de PC.",
         img: HSLogo,
-        listOfFramesLibs: [
-			{
-                name: 'ReactJS',
-                icon: SiReact
-            },
-			{
-                name: 'ASP .Net Core',
-                icon: TbBrandCSharp 
-            }
-		],
-        frontend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-app",
-        backend_url: "https://github.com/AlonsoAcunaGuerrero/hardware-store-api"
+        // listOfFramesLibs: [
+        //     {
+        //         name: "ReactJS",
+        //         icon: SiReact,
+        //     },
+        //     {
+        //         name: "ASP .Net Core",
+        //         icon: TbBrandCSharp,
+        //     },
+        // ],
+        frontendUrl:
+            "https://github.com/AlonsoAcunaGuerrero/hardware-store-app",
+        backendUrl:
+            "https://github.com/AlonsoAcunaGuerrero/hardware-store-api",
     },
     {
         name: "Aplicación para Trabajo Colaborativo",
-        description: "Aplicación para trabajo en equipo y administración de tareas.",
+        description:
+            "Aplicación para trabajo en equipo y administración de tareas.",
         img: CTALogo,
-        listOfFramesLibs: [
-			{
-                name: 'ReactTS',
-                icon: SiReact
-            },
-			{
-                name: 'Actix-Web',
-                icon: SiActix
-            }
-		],
-        frontend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-frontend",
-        backend_url: "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-backend"
-    }
-]
+        // listOfFramesLibs: [
+        //     {
+        //         name: "ReactTS",
+        //         icon: SiReact,
+        //     },
+        //     {
+        //         name: "Actix-Web",
+        //         icon: SiActix,
+        //     },
+        // ],
+        frontendUrl:
+            "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-frontend",
+        backendUrl:
+            "https://github.com/AlonsoAcunaGuerrero/colaborative-task-app-backend",
+    },
+];
 ---
 
-<<<<<<< HEAD
-<Layout title='Portfolio - Alonso Acuña'>
-    <Navbar listOfNavItems={
-		[
-			{
-				name: "Inicio",
-				path: "#top"
-			},
-			{
-				name: "Conocimientos",
-				path: "#skills"
-			},
-			{
-				name: "Proyectos",
-				path: "#projects"
-			}
-		]
-	} />
-=======
-<Layout title='Portafolio - Alonso Acuña'>
+<Layout title="Portafolio - Alonso Acuña">
     <Navbar />
->>>>>>> 40d8838 (General Update)
-	<main>
-		<section id='home'>
-			<HomePanel
-            presentationTitles={["Hola, soy Alonso Acuña", 
-            "Desarrollador Web Full-Stack y Desarrollador de Videojuegos"]} />
-		</section>
-	</main>
+    <main>
+        <section id="home">
+            <HomePanel
+                presentationTitles={[
+                    "Hola, soy Alonso Acuña",
+                    "Desarrollador Web Full-Stack y Desarrollador de Videojuegos",
+                ]}
+            />
+        </section>
+    </main>
 
-    <section id='skills'>
-		<SkillsPanel title='Conocimientos'
-		cardFLTitle='Frameworks y Librerias' />
-	</section>
+    <section id="skills">
+        <SkillsPanel
+            title="Conocimientos"
+        />
+    </section>
 
-	<section id='projects'>
-		<ProjectsPanel title='Proyectos' listOfProjects={listOfProjects}
-		cardFLTitle='Frameworks y Librerias' />
-	</section>
+    <section id="projects">
+        <ProjectsPanel
+            title="Proyectos"
+            listOfProjects={listOfProjects}
+            cardFLTitle="Frameworks y Librerias"
+        />
+    </section>
 </Layout>

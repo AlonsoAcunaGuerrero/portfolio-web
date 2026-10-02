@@ -1,4 +1,7 @@
 {
+    "navbar.home" : "Inicio",
+    "navbar.skills" : "Habilidades",
+    "navbar.projects" : "Proyectos",
     "aboutme.title" : "Acerca de Mi",
     "aboutme.description" : "Hola, soy un Ingeniero en Sistemas, enfocado a la programación Full Stack Web, Desarrollo de Videojuegos y Mobile.",
     "projects.btn_show_info" : "Mostrar Información",

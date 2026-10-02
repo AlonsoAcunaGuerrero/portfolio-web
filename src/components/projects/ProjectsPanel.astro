@@ -1,13 +1,9 @@
 ---
 import SectionPanel from "../../layouts/SectionPanel.astro";
 import ProjectCard from './ProjectCard.astro';
-<<<<<<< HEAD
-import type { FrameLib } from "../skills/FrameLibCard.astro";
-=======
 import HSLogo from "../../assets/img/Hardware_Shop_Project_Logo.png";
 import CTALogo from "../../assets/img/Colaborative_Task_App.png";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
->>>>>>> 40d8838 (General Update)
 
 interface Props {
     title: string,
@@ -23,9 +19,6 @@ export interface Project {
     backendUrl: string
 }
 
-<<<<<<< HEAD
-const { title, listOfProjects, cardFLTitle } = Astro.props as Props;
-=======
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -50,7 +43,6 @@ const listOfProjects: Project[] = [
     }
 ]
 
->>>>>>> 40d8838 (General Update)
 ---
 <SectionPanel title={title}>
     <span class='working-on-projects'>{lblWorkingOnProjects}</span>
@@ -58,19 +50,10 @@ const listOfProjects: Project[] = [
     <div class='cards-container'>
         <!-- {
             listOfProjects?.map((project) => 
-<<<<<<< HEAD
-                <li class='card-item'>
-                    <ProjectCard name={project.name} description={project.description} 
-                    img={project.img} listOfFramesLibs={project.listOfFramesLibs} 
-                    frontend_url={project.frontend_url} backend_url={project.backend_url}
-                    cardFLTitle={cardFLTitle} />
-                </li> 
-=======
                 <div class='card-item'>
                     <ProjectCard name={project.name} description={project.description} img={project.img} 
                     frontendUrl={project.frontendUrl} backendUrl={project.backendUrl} />
                 </div> 
->>>>>>> 40d8838 (General Update)
             )
         } -->
 

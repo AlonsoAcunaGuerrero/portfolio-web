@@ -5,20 +5,12 @@ import { FaGithub } from "react-icons/fa";
 import { TiArrowSortedUp } from "react-icons/ti";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
-<<<<<<< HEAD
-interface Props extends Project{
-    cardFLTitle: string
-}
-
-const { name, description, img, listOfFramesLibs, frontend_url, backend_url, cardFLTitle } = Astro.props as Props;
-=======
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const btnShowInfoText: string = t("projects.btn_show_info");
 
 const { name, description, img, frontendUrl, backendUrl } = Astro.props as Project;
->>>>>>> 40d8838 (General Update)
 ---
 
 <div class="project-card">
@@ -32,38 +24,6 @@ const { name, description, img, frontendUrl, backendUrl } = Astro.props as Proje
         <p class="project-description" '>{description}</p>
     </div>
 
-<<<<<<< HEAD
-    <div class="fl-box">
-        <h3>{cardFLTitle}</h3>
-        <ul class="fl-container">
-            {
-                listOfFramesLibs.map((fl) => 
-                <li class="fl-item">
-                    <fl.icon />
-                    <span>{fl.name}</span>
-                </li>
-            )
-            }
-        </ul>
-    </div>
-
-    <div class='resources-titles-container'>
-        <span class='frontend-title'>Frontend</span>
-        <span class='backend-title''>Backend</span>
-    </div>
-
-    <div class='resources-links-container'>
-        <a href={frontend_url} target='_blank' class='btn-frontend'>
-            <FaGithub />
-            <TiArrowSortedUp />
-        </a>
-
-        <a href={backend_url} target='_blank' class='btn-backend'>
-            <FaGithub />
-            <TiArrowSortedUp />
-        </a>
-    </div>
-=======
     <button
         class="btn-show-info"
         data-name={name}
@@ -74,7 +34,6 @@ const { name, description, img, frontendUrl, backendUrl } = Astro.props as Proje
     >
         {btnShowInfoText}
     </button>
->>>>>>> 40d8838 (General Update)
 </div>
 
 <script>
@@ -213,13 +172,7 @@ const { name, description, img, frontendUrl, backendUrl } = Astro.props as Proje
         .btn-backend > svg:nth-child(2) {
             font-size: 3em;
         }
-<<<<<<< HEAD
-    }
-
-    {/* Frames & Libs */}
-=======
     } */
->>>>>>> 40d8838 (General Update)
 
     .fl-box {
         display: flex;
@@ -256,20 +209,7 @@ const { name, description, img, frontendUrl, backendUrl } = Astro.props as Proje
 		color: white;
 	}
 
-<<<<<<< HEAD
-    .fl-item > svg {
-		font-size: 2.5em;
-	}
-
-	.fl-item > span {
-		font-style: italic;
-		font-size: 1.2em;
-	}
+    .btn-resource:hover > svg:first-child {
+        transform: translateY(-0.4em);
+    }
 </style>
-=======
-        .btn-resource:hover > svg:first-child {
-            transform: translateY(-0.4em);
-        }
-    } */
-</style>
->>>>>>> 40d8838 (General Update)

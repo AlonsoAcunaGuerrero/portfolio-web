@@ -1,14 +1,10 @@
 ---
-interface Props {
-	listOfNavItems: NavItem[]
-}
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
-export interface NavItem {
-    name: string,
-    path: string
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const { listOfNavItems } = Astro.props as Props;
+const { } = Astro.props;
 ---
 
 <nav>
@@ -16,14 +12,18 @@ const { listOfNavItems } = Astro.props as Props;
         <div>
         </div>
 
-        <ul>
-            {
-                listOfNavItems.map((navItem) => 
-                    <li>
-                        <a href={navItem.path} class="nav-item">{navItem.name}</a>
-                    </li>
-                )
-            }
+        <ul class="nav-items-container">
+            <li>
+                <a href="#home" class="nav-item">{t("navbar.home")}</a>
+            </li>
+
+            <li>
+                <a href="#skills" class="nav-item">{t("navbar.skills")}</a>
+            </li>
+
+            <li>
+                <a href="#projects" class="nav-item">{t("navbar.projects")}</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -46,14 +46,14 @@ const { listOfNavItems } = Astro.props as Props;
         align-items: center;
     }
 
-    ul {
+    .nav-items-container {
         display: flex;
         flex-direction: row;
         height: 100%;
         column-gap: 1.25em;
     }
 
-    ul li {
+    .nav-items-container li {
         display: flex;
         align-items: center;
     }
