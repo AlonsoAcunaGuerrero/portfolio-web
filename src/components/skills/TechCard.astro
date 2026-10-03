@@ -64,9 +64,9 @@ const { name, icon, tags } = Astro.props as Tech;
 
     .tech-tag-container {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
         gap: 0.75em;
-        overflow: scroll;
     }
 
     .tech-tag-item > span {
